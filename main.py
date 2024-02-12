@@ -9,25 +9,6 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-
-class Chat(Resource):
-
-    def get(self):
-        prompt = request.form['message']
-        id = request.form['SID']
-        return jsonify(doChat(prompt, id))
-
-    def post(self):
-        prompt = request.form['message']
-        id = request.form['SID']
-        return jsonify(doChat(prompt, id))
-
-
-api.add_resource(Chat, '/chat')
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
-
-
 def doChat(prompt, ID):
     if ID not in message_history.keys():
         message_history[ID] = []
@@ -52,3 +33,23 @@ def doChat(prompt, ID):
     message_history[ID].append(ChatMessage(author="bot", content=response.text))
 
     return response
+
+class Chat(Resource):
+
+    def get(self):
+        prompt = request.form['message']
+        id = request.form['SID']
+        return jsonify(doChat(prompt, id))
+
+    def post(self):
+        prompt = request.form['message']
+        id = request.form['SID']
+        return jsonify(doChat(prompt, id))
+
+
+api.add_resource(Chat, '/chat')
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True, host = "0.0.0.0", port = 5000)
+
+
+
