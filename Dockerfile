@@ -1,10 +1,10 @@
-# Use a minimal base image for efficiency
-FROM python:3.12-slim-bullseye
+# # Use a minimal base image for efficiency
+# FROM python:3.12-slim-bullseye
 
 
-WORKDIR /app
-COPY . . 
+# WORKDIR /app
+# COPY . . 
 
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 
-CMD [ "python", "main.py"]
+# CMD [ "python", "main.py"]
